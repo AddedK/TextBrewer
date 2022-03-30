@@ -272,7 +272,7 @@ def get_outputs_from_batch(batch, device, model_T, model_S, args, no_teacher_for
         else:
             with torch.no_grad():
                 results_T = auto_forward(model_T,batch,args)
-        results_S = model_S(*batch, **args)
+        results_S = model_S(**batch, **args) # My fix
         teacher_batch = student_batch = batch
     
     return (teacher_batch,results_T), (student_batch,results_S)
